@@ -1,6 +1,7 @@
 -- ============================================================
 -- UNT - Sistema de Gestión de Propuestas
 -- Ley N° 29230 - Obras por Impuestos
+-- Universidad Nacional de Tumbes
 -- ============================================================
 
 CREATE DATABASE IF NOT EXISTS propuestas_unt 
@@ -12,7 +13,7 @@ USE propuestas_unt;
 -- Tabla maestra de propuestas
 CREATE TABLE propuestas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    
+
     -- Datos del Proceso
     nomenclatura_proceso VARCHAR(100) DEFAULT 'PROCESO DE SELECCIÓN N.° 01-2026-CE-OXI-UNT',
     codigo_cui VARCHAR(10) DEFAULT '2710525',
@@ -20,7 +21,7 @@ CREATE TABLE propuestas (
     comite_seleccion VARCHAR(255) DEFAULT 'COMITÉ ESPECIAL – Ley N° 29230',
     entidad_publica VARCHAR(255) DEFAULT 'UNIVERSIDAD NACIONAL DE TUMBES',
     direccion_entidad TEXT,
-    
+
     -- Datos del Postor
     postor_nombre VARCHAR(255),
     ruc_postor VARCHAR(11),
@@ -28,7 +29,7 @@ CREATE TABLE propuestas (
     dni_representante VARCHAR(20),
     email_postor VARCHAR(100),
     lugar_fecha VARCHAR(100),
-    
+
     -- Datos Económicos (Anexo 4-E)
     costo_directo DECIMAL(15,2) DEFAULT 0,
     gastos_generales DECIMAL(15,2) DEFAULT 0,
@@ -45,11 +46,11 @@ CREATE TABLE propuestas (
     costo_act_operacion DECIMAL(15,2) DEFAULT 0,
     presupuesto_total DECIMAL(15,2) DEFAULT 0,
     monto_letras TEXT,
-    
+
     -- Metadatos
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    
+
     INDEX idx_ruc (ruc_postor),
     INDEX idx_proceso (nomenclatura_proceso)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

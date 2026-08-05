@@ -5,79 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNT - Sistema de Propuestas | Ley 29230</title>
     <link rel="stylesheet" href="css/styles.css">
+<base target="_blank">
 </head>
 <body>
 
-<!-- SIDEBAR: DATOS MAESTROS -->
 <aside id="master-sidebar">
     <div class="sidebar-header">
         <h2>🎓 UNT - Propuestas</h2>
         <p class="subtitle">Ley N° 29230 - Obras por Impuestos</p>
     </div>
-
     <div class="sidebar-section">
         <h3>📋 Datos del Proceso</h3>
-        <div class="m-group">
-            <label>Nomenclatura:</label>
-            <input type="text" id="m_proceso" value="PROCESO DE SELECCIÓN N.° 01-2026-CE-OXI-UNT">
-        </div>
-        <div class="m-group">
-            <label>Código CUI:</label>
-            <input type="text" id="m_cui" value="2710525" maxlength="7">
-        </div>
-        <div class="m-group">
-            <label>Nombre del Proyecto:</label>
-            <textarea id="m_proyecto" rows="3">MEJORAMIENTO DEL SERVICIO DE GESTIÓN INSTITUCIONAL EN EDUCACIÓN SUPERIOR UNIVERSITARIA EN COMEDOR UNIVERSITARIO DISTRITO DE TUMBES DE LA PROVINCIA DE TUMBES DEL DEPARTAMENTO DE TUMBES</textarea>
-        </div>
-        <div class="m-group">
-            <label>Comité:</label>
-            <input type="text" id="m_comite" value="COMITÉ ESPECIAL – Ley N° 29230">
-        </div>
-        <div class="m-group">
-            <label>Entidad Pública:</label>
-            <input type="text" id="m_entidad" value="UNIVERSIDAD NACIONAL DE TUMBES">
-        </div>
-        <div class="m-group">
-            <label>Dirección:</label>
-            <textarea id="m_direccion" rows="2">CIUDAD UNIVERSITARIA NRO. S/N (BARRIO PAMPA GRANDE) TUMBES - TUMBES - TUMBES</textarea>
-        </div>
-        <div class="m-group">
-            <label>Lugar y Fecha:</label>
-            <input type="text" id="m_fecha" value="Tumbes, 05 de agosto de 2026">
-        </div>
+        <div class="m-group"><label>Nomenclatura del Proceso:</label><input type="text" id="m_proceso" value="PROCESO DE SELECCIÓN N.° 01-2026-CE-OXI-UNT"></div>
+        <div class="m-group"><label>Código CUI:</label><input type="text" id="m_cui" value="2710525" maxlength="7"></div>
+        <div class="m-group"><label>Nombre del Proyecto:</label><textarea id="m_proyecto" rows="3">MEJORAMIENTO DEL SERVICIO DE GESTIÓN INSTITUCIONAL EN EDUCACIÓN SUPERIOR UNIVERSITARIA EN COMEDOR UNIVERSITARIO DISTRITO DE TUMBES DE LA PROVINCIA DE TUMBES DEL DEPARTAMENTO DE TUMBES</textarea></div>
+        <div class="m-group"><label>Comité de Selección:</label><input type="text" id="m_comite" value="COMITÉ ESPECIAL – Ley N° 29230"></div>
+        <div class="m-group"><label>Entidad Pública:</label><input type="text" id="m_entidad" value="UNIVERSIDAD NACIONAL DE TUMBES"></div>
+        <div class="m-group"><label>Dirección Entidad:</label><textarea id="m_direccion" rows="2">CIUDAD UNIVERSITARIA NRO. S/N (BARRIO PAMPA GRANDE) TUMBES - TUMBES - TUMBES</textarea></div>
+        <div class="m-group"><label>Lugar y Fecha:</label><input type="text" id="m_fecha" value="Tumbes, 05 de agosto de 2026"></div>
     </div>
-
     <div class="sidebar-section">
         <h3>🏢 Datos del Postor</h3>
-        <div class="m-group">
-            <label>Postor / Consorcio:</label>
-            <input type="text" id="m_postor" placeholder="Razón social completa">
-        </div>
-        <div class="m-group">
-            <label>RUC:</label>
-            <input type="text" id="m_ruc" maxlength="11" placeholder="20100000001">
-        </div>
-        <div class="m-group">
-            <label>Representante Legal:</label>
-            <input type="text" id="m_representante" placeholder="Apellidos y Nombres">
-        </div>
-        <div class="m-group">
-            <label>DNI Representante:</label>
-            <input type="text" id="m_dni_rep" maxlength="8" placeholder="12345678">
-        </div>
-        <div class="m-group">
-            <label>Correo Electrónico:</label>
-            <input type="email" id="m_email" placeholder="postor@empresa.com">
-        </div>
+        <div class="m-group"><label>Postor (Empresa/Consorcio):</label><input type="text" id="m_postor" placeholder="Razón social completa"></div>
+        <div class="m-group"><label>RUC:</label><input type="text" id="m_ruc" maxlength="11" placeholder="20100000001"></div>
+        <div class="m-group"><label>Representante Legal:</label><input type="text" id="m_representante" placeholder="Apellidos y Nombres completos"></div>
+        <div class="m-group"><label>DNI Representante:</label><input type="text" id="m_dni_rep" maxlength="8" placeholder="12345678"></div>
+        <div class="m-group"><label>Correo Electrónico:</label><input type="email" id="m_email" placeholder="postor@empresa.com"></div>
     </div>
-
+    <div class="sidebar-section">
+        <h3>👤 Datos del Apoderado (Anexo 4-C)</h3>
+        <div class="m-group"><label>Nombre del Apoderado:</label><input type="text" id="m_apoderado" placeholder="Apellidos y Nombres"></div>
+        <div class="m-group"><label>DNI Apoderado:</label><input type="text" id="m_dni_apod" maxlength="8" placeholder="12345678"></div>
+    </div>
     <nav class="nav-anexos">
         <h3>📑 Anexos</h3>
         <button class="nav-btn active" onclick="mostrarAnexo('dash')">📊 Dashboard</button>
         <button class="nav-btn" onclick="mostrarAnexo('4a')">4-A: Expresión de Interés</button>
-        <button class="nav-btn" onclick="mostrarAnexo('4b')">4-B: Contenido Sobres</button>
+        <button class="nav-btn" onclick="mostrarAnexo('4b')">4-B: Contenido de Sobres</button>
         <button class="nav-btn" onclick="mostrarAnexo('4c')">4-C: Acreditación</button>
-        <button class="nav-btn" onclick="mostrarAnexo('4d')">4-D: Info Financiera</button>
+        <button class="nav-btn" onclick="mostrarAnexo('4d')">4-D: Info Financiera y Técnica</button>
         <button class="nav-btn" onclick="mostrarAnexo('4e')">4-E: Propuesta Económica</button>
         <button class="nav-btn" onclick="mostrarAnexo('4g')">4-G: Declaración Jurada</button>
         <button class="nav-btn" onclick="mostrarAnexo('4h')">4-H: Compromiso Ejecutora</button>
@@ -85,18 +51,327 @@
         <button class="nav-btn" onclick="mostrarAnexo('4l')">4-L: Personal Profesional</button>
         <button class="nav-btn" onclick="mostrarAnexo('4m')">4-M: Compromiso Personal</button>
     </nav>
-
-    <div class="action-btns">
+    <div class="action-btns no-print">
         <button class="btn btn-success" onclick="guardarPropuesta()">💾 Guardar en BD</button>
         <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir / PDF</button>
         <button class="btn btn-warning" onclick="exportarJSON()">📤 Exportar JSON</button>
     </div>
 </aside>
 
-<!-- CANVAS: DOCUMENTOS -->
 <main id="canvas">
-    <!-- El contenido de los anexos se mantiene idéntico al mostrado en el widget -->
-    <!-- ... (Anexos 4-A hasta 4-M con mismas estructuras) ... -->
+
+<!-- DASHBOARD -->
+<section class="anexo-page active" id="anexo-dash">
+    <div class="dashboard-header"><h1>📊 Panel de Control - Propuestas UNT</h1><p>Proceso: <span class="out_proceso sync-data"></span></p></div>
+    <div class="dashboard-stats">
+        <div class="stat-card"><h4>Total Propuestas</h4><div class="value" id="dash_total">0</div></div>
+        <div class="stat-card"><h4>Monto Mayor</h4><div class="value" id="dash_mayor">S/ 0.00</div></div>
+        <div class="stat-card"><h4>Último Registro</h4><div class="value" id="dash_fecha">--</div></div>
+    </div>
+    <div class="dashboard-preview">
+        <h3>📋 Resumen del Proceso</h3>
+        <table class="preview-table">
+            <tr><td><strong>Proceso:</strong></td><td class="out_proceso sync-data"></td></tr>
+            <tr><td><strong>CUI:</strong></td><td class="out_cui sync-data"></td></tr>
+            <tr><td><strong>Proyecto:</strong></td><td class="out_proyecto sync-data"></td></tr>
+            <tr><td><strong>Comité:</strong></td><td class="out_comite sync-data"></td></tr>
+            <tr><td><strong>Entidad:</strong></td><td class="out_entidad sync-data"></td></tr>
+            <tr><td><strong>Postor:</strong></td><td class="out_postor sync-data"></td></tr>
+            <tr><td><strong>RUC:</strong></td><td class="out_ruc sync-data"></td></tr>
+        </table>
+    </div>
+</section>
+
+<!-- ANEXO 4-A -->
+<section class="anexo-page" id="anexo-4a">
+    <div class="header-ref">ANEXO N° 4-A</div>
+    <div class="title-doc">MODELO DE CARTA DE EXPRESIÓN DE INTERÉS</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores:<br><strong><span class="out_comite sync-data"></span></strong><br><strong>PROCESO DE SELECCIÓN</strong><br>Presente.-</p>
+    <p>La Empresa Privada (O EL CONSORCIO) <span class="out_postor sync-data"></span>, debidamente representado por su <span class="out_representante sync-data"></span>, identificado con DNI N° <span class="out_dni_rep sync-data"></span>, tenemos el agrado de dirigirnos a ustedes, en relación con el <strong><span class="out_proceso sync-data"></span></strong>, a fin de manifestar interés respecto del siguiente proyecto:</p>
+    <p style="text-align:center; font-weight:bold; margin:20px 0;">"<span class="out_proyecto sync-data"></span>" CON CUI N° <span class="out_cui sync-data"></span></p>
+    <p>Para dichos efectos, declaro haber tomado conocimiento del contenido de las Bases del proceso de selección antes indicado, sujetándome a las disposiciones y requisitos establecidos en las mismas.</p>
+    <p>Asimismo, señalo mi correo electrónico: <span class="out_email sync-data"></span> para las notificaciones en el presente proceso de selección.</p>
+    <p>Atentamente,</p>
+    <div class="sig-single"><div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Privada (o Consorcio)</div></div>
+</section>
+
+<!-- ANEXO 4-B -->
+<section class="anexo-page" id="anexo-4b">
+    <div class="header-ref">ANEXO N° 4-B</div>
+    <div class="title-doc">CONTENIDO DE LOS SOBRES A SER PRESENTADOS POR EL POSTOR</div>
+    <p>El postor debe cumplir con las declaraciones exigidas en el presente anexo, de acuerdo a lo señalado en el artículo 86 del Reglamento.</p>
+    <div class="seccion-titulo">CONTENIDO DEL SOBRE N° 1: CREDENCIALES</div>
+    <p><strong>1. Requisitos Legales:</strong></p>
+    <ul style="margin-left:20px; margin-bottom:15px;">
+        <li>Si el postor es una persona jurídica domiciliada (peruana): Copia simple de la ficha registral, adjuntando el documento constitutivo y sus respectivas modificaciones y del documento que acredite a los Representantes Legales. Alternativamente al documento constitutivo, se aceptará copia del Estatuto vigente, sea de la persona jurídica o de los integrantes del Consorcio.</li>
+        <li>Si el postor es una persona jurídica extranjera: Copia simple de la ficha registral de la sucursal, filial o subsidiaria, adjuntando el documento constitutivo en el Perú, así como sus respectivas modificaciones; y, copia del documento que acredite a los Representantes Legales en Perú.</li>
+        <li>El Anexo N° 4-G firmado por los Representantes Legales de los integrantes del Postor y, de ser el caso, los Representantes Legales de los integrantes del Consorcio.</li>
+        <li>Copia simple de los documentos que acrediten las facultades del o los Representantes Legales del Postor o Consorcio.</li>
+        <li>En el caso de Consorcio, deberá presentarse adicionalmente una Declaración Jurada firmada por los representantes legales que lo integran, conforme al modelo que aparece como Anexo N° 4-K.</li>
+        <li>La relación de Convenios y adendas suscritos con las entidades públicas que incluya el Monto Total del Convenio de Inversión, de corresponder.</li>
+        <li>Documento que acredite que el postor cuenta con inscripción en el RUC con estado activo, con condición de domicilio fiscal habido y representantes legales ante SUNAT.</li>
+    </ul>
+    <div class="nota"><strong>IMPORTANTE:</strong> La sucursal en el Perú debe considerar los requisitos establecidos en la Ley N° 26887 Ley General de Sociedades, así como encontrarse inscrita en la SUNARP con capital asignado y contar con designación de representante legal. Los documentos de constitución o el estatuto deben indicar expresamente que se someten a las leyes del Perú.</div>
+    <p><strong>2. Información Financiera:</strong></p>
+    <ul style="margin-left:20px; margin-bottom:15px;">
+        <li>Los Postores o las empresas integrantes del Consorcio, deberán presentar la Carta respecto de sus Estados Financieros correspondientes a los últimos 3 ejercicios. Además, deberá adjuntar copia de la última Declaración Jurada presentada a la SUNAT.</li>
+        <li>Declaración Jurada en la que el Postor indique que cuenta con un patrimonio neto por un valor de <strong>S/ 8,799,305.50</strong> (ocho millones setecientos noventa y nueve mil trescientos cinco con 50/100 soles) monto superior al Monto Referencial del Convenio de Inversión consignado en las bases.</li>
+    </ul>
+    <div class="seccion-titulo">SOBRE EL PATRIMONIO NETO</div>
+    <ul style="margin-left:20px;">
+        <li>El Patrimonio Neto se acredita con el estado financiero anual auditado del último ejercicio disponible, el cual no puede tener una antigüedad mayor a dieciocho (18) meses.</li>
+        <li>Los estados financieros deben estar preparados de conformidad con las NIIF y haber sido auditados por sociedades de auditoría autorizadas.</li>
+        <li>En el caso de un Consorcio, se puede considerar a la suma de los patrimonios netos prorrateados de cada uno de los integrantes.</li>
+        <li>Para efectos de acreditación del Patrimonio Neto, no se considera aquel patrimonio que se encuentre constituido totalmente por bonos emitidos por la República del Perú respecto de los cuales se haya producido la caducidad o prescripción para su cobro.</li>
+    </ul>
+    <p style="margin-top:20px;"><strong>1. Carta de Presentación de Información Financiera y Técnica:</strong> Conforme al Anexo N° 4-D, firmada en original por el Representante Legal cuyas firmas deben ser legalizadas por Notario Público o Juez de Paz Letrado.</p>
+    <div class="seccion-titulo" style="margin-top:30px;">B. CONTENIDO DEL SOBRE N° 2: PROPUESTA ECONÓMICA</div>
+    <p>La Propuesta Económica será presentada según el Anexo N° 4-E de las presentes Bases.</p>
+    <p>Cada Propuesta Económica deberá permanecer vigente, cuando menos hasta sesenta (60) días hábiles después de la fecha de otorgamiento de la Buena Pro. Quedará sin efecto toda Propuesta Económica que tuviese una vigencia menor.</p>
+    <p>A los efectos de este proceso de selección, la presentación del Sobre N° 2 por parte de un Postor constituye una Propuesta Económica irrevocable por la materia de este proceso.</p>
+    <div class="seccion-titulo" style="margin-top:30px;">C. CONTENIDO DEL SOBRE N° 3: PROPUESTA TÉCNICA</div>
+    <p>1. Acreditar el cumplimiento de los Requisitos Mínimos establecidos en los Términos de Referencia.</p>
+    <p>2. En caso se acredite el requisito a través de una o más Empresas Ejecutoras, distintas a la Empresa Privada, el Postor debe presentar el Anexo N° 4-H mediante el cual manifieste que, de resultar favorecido con la Adjudicación de la Buena Pro, se compromete a contratar como Ejecutor(es) del Proyecto a la(s) empresa(s) cuya experiencia acreditó en el Sobre N° 2.</p>
+    <p>La Propuesta Técnica será evaluada por el Comité Especial, tendrá el carácter de vinculante. Las propuestas que se presenten de manera incompleta quedarán eliminadas.</p>
+    <div class="seccion-titulo" style="margin-top:30px;">C. PRESENTACIÓN DE LOS SOBRES</div>
+    <p>Los sobres deben ser presentados al Comité Especial cerrados y claramente marcados en el anverso, indicando el número de sobre que le corresponde, así como el nombre del Postor, en cada uno de ellos.</p>
+    <div class="sobre-rotulo"><p style="text-align:center; font-weight:bold; margin-bottom:10px;">SOBRE N° 1: CREDENCIALES</p><p style="text-align:center;">Señores<br><strong>UNIVERSIDAD NACIONAL DE TUMBES</strong><br><span class="out_direccion sync-data"></span><br>Atte. <span class="out_comite sync-data"></span><br>Proceso: <span class="out_proceso sync-data"></span><br>Objeto: Selección de la Empresa Privada para el financiamiento y ejecución del Proyecto<br>"<span class="out_proyecto sync-data"></span>" CON CUI N° <span class="out_cui sync-data"></span>.<br><br><strong>SOBRE N° 1: CREDENCIALES</strong><br>NOMBRE / DENOMINACIÓN SOCIAL / RAZÓN SOCIAL DE POSTOR<br>N° DE FOLIOS DE C/EJEMPLAR [..........]</p></div>
+    <div class="sobre-rotulo"><p style="text-align:center; font-weight:bold; margin-bottom:10px;">SOBRE N° 2: PROPUESTA ECONÓMICA</p><p style="text-align:center;">Señores<br><strong>UNIVERSIDAD NACIONAL DE TUMBES</strong><br><span class="out_direccion sync-data"></span><br>Atte. <span class="out_comite sync-data"></span><br>Proceso: <span class="out_proceso sync-data"></span><br>Objeto: Selección de la Empresa Privada para el financiamiento y ejecución del Proyecto<br>"<span class="out_proyecto sync-data"></span>" CON CUI N° <span class="out_cui sync-data"></span>.<br><br><strong>SOBRE N° 2: PROPUESTA ECONÓMICA</strong><br>NOMBRE / DENOMINACIÓN SOCIAL / RAZÓN SOCIAL DE POSTOR<br>N° DE FOLIOS DE C/EJEMPLAR [..........]</p></div>
+    <div class="sobre-rotulo"><p style="text-align:center; font-weight:bold; margin-bottom:10px;">SOBRE N° 3: PROPUESTA TÉCNICA</p><p style="text-align:center;">Señores<br><strong>UNIVERSIDAD NACIONAL DE TUMBES</strong><br><span class="out_direccion sync-data"></span><br>Atte. <span class="out_comite sync-data"></span><br>Proceso: <span class="out_proceso sync-data"></span><br>Objeto: Selección de la Empresa Privada para el financiamiento y ejecución del Proyecto<br>"<span class="out_proyecto sync-data"></span>" CON CUI N° <span class="out_cui sync-data"></span>.<br><br><strong>SOBRE N° 3: PROPUESTA TÉCNICA</strong><br>NOMBRE / DENOMINACIÓN SOCIAL / RAZÓN SOCIAL DE POSTOR<br>N° DE FOLIOS DE C/EJEMPLAR [..........]</p></div>
+</section>
+
+<!-- ANEXO 4-C -->
+<section class="anexo-page" id="anexo-4c">
+    <div class="header-ref">ANEXO N° 4-C</div>
+    <div class="title-doc">MODELO DE CARTA DE ACREDITACIÓN</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores:<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_proceso sync-data"></span></strong><br>Presente.-</p>
+    <p><span class="out_postor sync-data"></span>, N° RUC <span class="out_ruc sync-data"></span>, debidamente representado por su <span class="out_representante sync-data"></span>, identificado con DNI N° <span class="out_dni_rep sync-data"></span>, tenemos el agrado de dirigirnos a ustedes, en relación con el <strong><span class="out_proceso sync-data"></span></strong>, a fin de acreditar a nuestro apoderado: <span class="out_apoderado sync-data"></span> identificado con DNI N° <span class="out_dni_apod sync-data"></span>, quien se encuentra, en virtud a este documento, debidamente autorizado a realizar todos los actos vinculados al proceso de selección.</p>
+    <p>Para tal efecto, se adjunta copia simple de la ficha registral vigente del postor.</p>
+    <p>Atentamente,</p>
+    <div class="sig-single"><div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Privada o Consorcio</div></div>
+</section>
+
+<!-- ANEXO 4-D -->
+<section class="anexo-page" id="anexo-4d">
+    <div class="header-ref">ANEXO N° 4-D</div>
+    <div class="title-doc">MODELO DE CARTA DE PRESENTACIÓN DE INFORMACIÓN FINANCIERA Y TÉCNICA</div>
+    <p style="text-align:right; font-size:10pt;">PATRIMONIO NETO S/ [CANTIDAD EN NÚMEROS Y LETRAS]*</p>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_entidad sync-data"></span></strong><br>Presente.-</p>
+    <p><strong>Postor:</strong> <span class="out_postor sync-data"></span></p>
+    <p><strong>Referencia:</strong> Proceso de selección de la Empresa Privada para el financiamiento y ejecución del Proyecto "<span class="out_proyecto sync-data"></span>" CON CUI N° <span class="out_cui sync-data"></span></p>
+    <p>Por medio de la presente cumplimos con acreditar los requisitos financieros para la calificación en el proceso de la referencia.</p>
+    <div class="seccion-titulo">A. PATRIMONIO NETO DEL POSTOR</div>
+    <table><tr><td style="width:60%;"><strong>PATRIMONIO NETO</strong></td><td style="width:40%;">S/ <input type="number" id="d_patrimonio" style="width:90%; text-align:right;" placeholder="0.00"></td></tr></table>
+    <p style="font-size:9pt;">(*) El monto que se coloque en esta tabla deberá ser el mismo que aparezca en la tabla. El monto señalado deberá ser igual o superior al solicitado en el Anexo 4-B.</p>
+    <div class="seccion-titulo">B. PATRIMONIO NETO Y PORCENTAJE DE PARTICIPACIÓN EN LA EMPRESA, DE LOS ACCIONISTAS O INTEGRANTES DE LA EMPRESA POSTORA:</div>
+    <table>
+        <tr><th>N°</th><th>Accionista o Integrante</th><th>Participación</th><th>Patrimonio Neto</th><th>Nota 1</th></tr>
+        <tr><td>1</td><td><input type="text" style="width:100%;" placeholder="Nombre"></td><td><input type="text" style="width:100%; text-align:center;" placeholder="%"></td><td>S/ <input type="number" style="width:80%; text-align:right;" placeholder="0.00"></td><td><input type="text" style="width:100%; text-align:center;" placeholder="X"></td></tr>
+        <tr><td>2</td><td><input type="text" style="width:100%;" placeholder="Nombre"></td><td><input type="text" style="width:100%; text-align:center;" placeholder="%"></td><td>S/ <input type="number" style="width:80%; text-align:right;" placeholder="0.00"></td><td><input type="text" style="width:100%; text-align:center;" placeholder="X"></td></tr>
+        <tr style="font-weight:bold;"><td colspan="2">TOTAL</td><td>100%</td><td colspan="2">(Llevar este total a la Sección A)</td></tr>
+    </table>
+    <p style="font-size:9pt;"><strong>Nota 1:</strong> Marque una "X" si la cifra del Patrimonio Neto pertenece a una Empresa vinculada y complete adicionalmente la SECCIÓN D.</p>
+    <p style="font-size:9pt;"><strong>Nota 2:</strong> Si las cifras originales están expresadas en moneda distinta al Sol, indicar el tipo de cambio.</p>
+    <div class="seccion-titulo">C. IMPUESTO A LA RENTA PAGADO</div>
+    <p>La empresa <span class="out_postor sync-data"></span> declara bajo juramento que durante el ejercicio fiscal anterior <input type="text" style="width:80px;" placeholder="Año"> ha procedido al pago de S/ <input type="number" style="width:120px; text-align:right;" placeholder="0.00"> por concepto de Impuesto a la Renta.</p>
+    <p>Adicionalmente, se incluye la Declaración Jurada presentada ante la SUNAT correspondiente al año <input type="text" style="width:80px;" placeholder="Año">; y, asimismo, información relevante de la(s) empresa(s) que podrían empezar a pagar Impuesto a la Renta en el país a mediano plazo.</p>
+    <div class="seccion-titulo">D. EXPLICACIÓN DE LA RELACIÓN ENTRE EL POSTOR, EL ACCIONISTA O INTEGRANTES DEL CONSORCIO</div>
+    <p>En caso de que la cifra del participante, accionista o de uno de sus integrantes corresponda a otra persona, debe explicarse a continuación la relación que causa que tal empresa sea empresa accionista o integrante del postor.</p>
+    <textarea style="width:100%; min-height:80px; border:1px solid #000; padding:8px; font-family:inherit; font-size:10pt;" placeholder="Describir relación..."></textarea>
+    <div class="seccion-titulo">E. REQUISITOS TÉCNICOS</div>
+    <p>Por medio de la presente, declaramos bajo juramento que el Postor, las empresas integrantes del Postor o la(s) Empresa(s) Ejecutora(s) a ser contratada(s), posee(n) experiencia adquirida dentro de los últimos 10 años en la ejecución de proyectos que se señalan a continuación:</p>
+    <p style="font-weight:bold; margin-top:15px;">Experiencia en ejecución de Proyectos en general (*)</p>
+    <table>
+        <tr><td style="width:40%"><strong>Datos de la Empresa Ejecutora</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Tipo de Actividad</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Año de inicio de actividades e información económica relevante</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Número de proyectos más importantes y número de personal ocupado en cada uno de ellos</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Monto acumulado en estos contratos (EXPRESADO EN SOLES)</strong></td><td>S/ <input type="number" style="width:80%; text-align:right;"></td></tr>
+    </table>
+    <p style="font-size:9pt;">(*) En caso que la experiencia sea de una Empresa Ejecutora distinta al Postor, adjuntar información de sustento (Actas, liquidaciones, conformidades, certificados, constancias o Currículum Vitae, u otros que la Entidad Pública estime convenientes).</p>
+    <p style="font-weight:bold; margin-top:15px;">Experiencia en ejecución de similares Proyecto a ejecutar</p>
+    <table>
+        <tr><td style="width:40%"><strong>Tipo de Actividades</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Año de inicio de las actividades</strong></td><td><input type="text" style="width:100%;"></td></tr>
+        <tr><td><strong>Monto de contratos realizados en los últimos [.....] años</strong></td><td>S/ <input type="number" style="width:80%; text-align:right;"></td></tr>
+    </table>
+    <div class="sig-block" style="margin-top:60px;">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Privada o Consorcio</div>
+    </div>
+    <p class="nota">Nota: Las firmas de los Representantes Legales deberán ser legalizadas por Notario Público o Juez de Paz Letrado.</p>
+</section>
+
+<!-- ANEXO 4-E -->
+<section class="anexo-page" id="anexo-4e">
+    <div class="header-ref">ANEXO N° 4-E</div>
+    <div class="title-doc">MODELO DE CARTA DE PRESENTACIÓN DE PROPUESTA ECONÓMICA</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_entidad sync-data"></span></strong><br>Presente.-</p>
+    <p><strong>Postor:</strong> <span class="out_postor sync-data"></span></p>
+    <p><strong>Referencia:</strong> Proceso de selección de la Empresa Privada para el financiamiento y ejecución del Proyecto "<span class="out_proyecto sync-data"></span>" con <strong>CUI N° <span class="out_cui sync-data"></span></strong>.</p>
+    <p>Nos es grato hacerles llegar nuestra Propuesta Económica, en los siguientes términos:</p>
+    <p>El Monto Referencial del Convenio de Inversión propuesto para la ejecución del Proyecto "<span class="out_proyecto sync-data"></span>" con CUI N° <span class="out_cui sync-data"></span> alcanza la suma de S/ <span id="e_monto_ref" style="font-weight:bold;">0.00</span></p>
+    <p>Este monto incluye todos los impuestos, tributos, gastos generales, gastos laborales, utilidad, seguros, transporte, inspecciones, pruebas, o cualquier otro concepto, de acuerdo al siguiente presupuesto detallado, el que no podrá tener borradura alguna, enmendadura o corrección, caso contrario se considerará como no presentado:</p>
+    <table>
+        <tr><th>RUBRO</th><th style="width:35%;">TOTAL (Soles)</th></tr>
+        <tr><td>COSTO DIRECTO</td><td>S/ <input type="number" id="v_directo" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>GASTOS GENERALES (10%)(*)</td><td id="r_gg" style="text-align:right; padding-right:25px;">0.00</td></tr>
+        <tr><td>UTILIDAD (5%)</td><td id="r_util" style="text-align:right; padding-right:25px;">0.00</td></tr>
+        <tr style="font-weight:bold;"><td>SUB TOTAL</td><td id="r_sub" style="text-align:right; padding-right:25px;">0.00</td></tr>
+        <tr><td>IMPUESTO I.G.V. (18%)</td><td id="r_igv" style="text-align:right; padding-right:25px;">0.00</td></tr>
+        <tr style="font-weight:bold;"><td>PRESUPUESTO BASE</td><td id="r_base" style="text-align:right; padding-right:25px;">0.00</td></tr>
+        <tr><td>EXPEDIENTE TÉCNICO (**)</td><td>S/ <input type="number" id="v_expediente" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE SUPERVISIÓN DE LA EJECUCIÓN DEL PROYECTO (**)</td><td>S/ <input type="number" id="v_sup_ejec" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE SUPERVISIÓN DE LA ELABORACIÓN DEL EXPEDIENTE TÉCNICO (**)</td><td>S/ <input type="number" id="v_sup_exp" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE EXPEDIENTE DE MANTENIMIENTO (***)</td><td>S/ <input type="number" id="v_exp_mant" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE ACTIVIDAD DE MANTENIMIENTO (***)</td><td>S/ <input type="number" id="v_act_mant" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE MANUAL DE OPERACIÓN (***)</td><td>S/ <input type="number" id="v_man_op" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr><td>COSTO DE ACTIVIDADES DE OPERACIÓN (***)</td><td>S/ <input type="number" id="v_act_op" style="width:80%; text-align:right;" oninput="calcularEconomico()" placeholder="0.00"></td></tr>
+        <tr style="background:#eee; font-weight:bold;"><td>PRESUPUESTO TOTAL REFERENCIAL (****)</td><td id="r_total" style="text-align:right; padding-right:25px;">0.00</td></tr>
+    </table>
+    <p style="font-size:9pt;">(*) El porcentaje de los gastos generales del proyecto es definido en la etapa de elaboración del Expediente Técnico. Este rubro considera los costos incurridos por la Empresa Privada descritos en el Artículo V, párrafo 13 del Título Preliminar del Reglamento.</p>
+    <p style="font-size:9pt;">(**) En caso la Entidad Pública considere este componente dentro del Monto Referencial del Convenio de Inversión.</p>
+    <p style="font-size:9pt;">(***) Componentes opcionales según el proyecto.</p>
+    <p style="font-size:9pt;">(****) No incluye intereses, ni costos financieros de carta fianza de adelanto directo o adelanto de materiales, ni costos de financiamiento a favor de la Empresa Privada y/o Empresa(s) Ejecutora(s) del Proyecto.</p>
+    <div class="monto-letras-box">MONTO TOTAL EN LETRAS: <span id="out_letras">SON: CERO Y 00/100 SOLES</span></div>
+    <p>Declaramos que nuestra Propuesta Económica tiene el carácter de irrevocable y que mantendrá su plena vigencia hasta sesenta (60) días hábiles posteriores a la fecha de Adjudicación de la Buena Pro, comprometiéndonos a prorrogarla obligatoriamente si el Comité Especial así lo dispone.</p>
+    <p>Declaramos conocer que nuestra Propuesta Económica se incorporará al Convenio de Inversión en todos sus términos y condiciones y sin excepción.</p>
+    <div class="sig-block">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Privada o Consorcio</div>
+    </div>
+</section>
+
+<!-- ANEXO 4-G -->
+<section class="anexo-page" id="anexo-4g">
+    <div class="header-ref">ANEXO N° 4-G</div>
+    <div class="title-doc">DECLARACIÓN JURADA DEL POSTOR</div>
+    <p>Por medio de la presente y con carácter de Declaración Jurada manifestamos a ustedes:</p>
+    <ol class="legal-list">
+        <li>Que, somos empresas o sociedades debidamente constituidas y válidamente existentes conforme a las Leyes del país o lugar de constitución, y que los representantes legales que participan en el proceso de selección se encuentran válidamente premunidos con facultades suficientes para representarnos en todos los actos y declaraciones que deben efectuarse como consecuencia del proceso de selección.</li>
+        <li>Que, nos sometemos irrevocablemente a todos y cada uno de los términos y condiciones establecidos en las Bases y demás documentos de la referencia y acataremos todas las resoluciones, Circulares y comunicaciones en general que el Comité Especial encargado formule en relación con el proceso de selección materia de las Bases. Asimismo, nos comprometemos a ejecutar todas las acciones que sean necesarias para cumplir lo exigido en las Bases.</li>
+        <li>Que, somos empresas que contamos con los recursos económicos y/o financieros para cumplir con nuestra obligación de financiar la ejecución del proyecto materia del presente proceso de selección, conforme a las Bases, el Convenio de Inversión, la Ley N° 29230 y el Reglamento y sus modificatorias.</li>
+        <li>Que, sabemos que el financiamiento y/o ejecución del Proyecto (o su mantenimiento y/u operación), no dará lugar a pago alguno de intereses, ni costos de financiamiento por parte de la Entidad Pública en favor de nuestra Empresa Privada y/o Empresa(s) Ejecutora(s) del Proyecto.</li>
+        <li>Que, entendemos que la ejecución del Proyecto estará supervisada por una Entidad Privada Supervisora contratada por la Entidad Pública de acuerdo al procedimiento previsto en la Ley N° 29230, y el Reglamento, por lo que nos comprometemos a brindar todas las facilidades del caso para que la misma pueda cumplir efectivamente sus funciones dentro del marco de las referidas normas.</li>
+        <li>Asimismo, no estamos incursos dentro de los alcances del Artículo 1366 del Código Civil, ni comprendidos en alguno de los impedimentos para ser Postor y/o contratistas establecidos en el párrafo 87.1 del artículo 87 del Reglamento, así mismo no cuenta con sentencia condenatoria, consentida o ejecutoriada por cualquiera de los delitos tipificados en la sección IV del capítulo II del Título XVIII del Código Penal. Y no estamos impedidos a participar como Postores, contratistas y/o participar en acciones de promoción de la inversión que realiza el Estado, de acuerdo con lo señalado en la Ley de Endeudamiento del Sector Público del respectivo Año Fiscal.</li>
+        <li>Asimismo, aseguramos que la Empresa Ejecutora que contratemos para la ejecución del proyecto no se encuentra dentro de los alcances del Artículo 1366 del Código Civil, ni comprendida en alguno de los impedimentos para ser postor y/o contratistas establecidos en el artículo 87 del Reglamento; asimismo, no cuenta con sentencia condenatoria, consentida o ejecutoriada por cualquiera de los delitos tipificados en la sección IV del capítulo II del Título XVIII del Código Penal.</li>
+        <li>Que, no somos empresas o sociedades vinculadas a cualquier otra persona jurídica o integrante de un Consorcio que se presente al presente proceso de selección, ni de cualquier otra empresa vinculada a ésta.</li>
+        <li>Que, somos empresas o sociedades debidamente constituidas y válidamente existentes conforme a las leyes del país o lugar de su constitución y que los Representantes Legales que participan en el proceso de selección están válidamente premunidos con facultades suficientes para representarnos en todos los actos y declaraciones que deben efectuarse como consecuencia del proceso de selección.</li>
+        <li>Que, acataremos los términos y condiciones establecidos por ustedes en lo que respecta a la utilización de la información que se proporcione y en general, mientras dure el proceso de selección, manteniendo estricta reserva sobre la información confidencial.</li>
+        <li>Que, nos sometemos a las leyes y demás normas vigentes en la República del Perú, así como a la jurisdicción de los jueces y tribunales de la ciudad de Tumbes, a efectos de someter cualquier controversia que se pudiese generar en aplicación de lo dispuesto por las Bases del proceso de selección en la referencia, renunciando a cualquier reclamo que pudiera ser formulado por la vía diplomática.</li>
+        <li style="font-style:italic;">(EN CASO DE CONSORCIO SE DEBE AGREGAR: QUE, LOS INTEGRANTES DE NUESTRO CONSORCIO RESPONDERÁN SOLIDARIAMENTE POR LAS OBLIGACIONES EMANADAS DE LAS BASES, DE SU PROPUESTA ECONÓMICA Y TÉCNICA, ASÍ COMO DEL CONVENIO DE INVERSIÓN).</li>
+        <li>Que declaramos y/o manifestamos, que somos responsables de la veracidad de los documentos e información que presentamos para efectos de este proceso de selección. En caso de que se compruebe que la información proporcionada es falsa, nos sometemos a lo dispuesto en la Décima Disposición Complementaria Final del Reglamento.</li>
+        <li>Que declaramos y/o manifestamos que en caso seamos los Adjudicatarios del presente proceso de selección, cumpliremos por entregar a la Entidad Pública las garantías de fiel cumplimiento conforme a lo determinado en las presentes Bases y el Convenio de Inversión.</li>
+    </ol>
+    <p>Los impedimentos señalados en los numerales precedentes alcanzan a los miembros integrantes del Postor, en caso estos se presenten en Consorcio.</p>
+    <p>Se suscribe la presente con carácter de Declaración Jurada irrevocable e incondicional.</p>
+    <p>Atentamente,</p>
+    <div class="seccion-titulo">PERSONA JURÍDICA:</div>
+    <p><span class="out_postor sync-data"></span></p>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-block" style="margin-top:40px;">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa</div>
+    </div>
+    <p class="nota">Nota: Las firmas de los representantes legales deberán ser legalizadas por Notario Público o Juez de Paz Letrado.</p>
+    <div class="seccion-titulo" style="margin-top:30px;">EN CASO DE CONSORCIO:</div>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-block" style="margin-top:40px;">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal Consorciado 1</div>
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal Consorciado 2</div>
+    </div>
+    <p class="nota">Nota: Las firmas de los representantes legales de los consorciados que forman el Consorcio en esta Declaración Jurada deberán ser legalizadas por Notario Público o Juez de Paz Letrado. Deberá adjuntarse además la vigencia de poderes de los representantes firmantes correspondiente a sus respectivas empresas.</p>
+</section>
+
+<!-- ANEXO 4-H -->
+<section class="anexo-page" id="anexo-4h">
+    <div class="header-ref">ANEXO N° 4-H</div>
+    <div class="title-doc">COMPROMISO DE CONTRATACIÓN DE LA EMPRESA EJECUTORA</div>
+    <div class="nota" style="margin-bottom:20px;"><strong>IMPORTANTE:</strong> Este formato deberá ser llenado en caso la EMPRESA PRIVADA contrate con una o más Empresas Ejecutoras para la ejecución del Proyecto.</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_entidad sync-data"></span></strong><br>Presente.-</p>
+    <p><strong>Referencia:</strong> Proceso de selección de la Empresa Privada para el financiamiento y ejecución del Proyecto "<span class="out_proyecto sync-data"></span>" con CUI N° <span class="out_cui sync-data"></span></p>
+    <p>Por medio de la presente, declaramos bajo juramento lo siguiente:</p>
+    <p>Que, hemos firmado un compromiso de contratar con <input type="text" style="width:60%;" placeholder="[INDICAR NOMBRE, DENOMINACIÓN SOCIAL O RAZÓN SOCIAL DE LA(S) EMPRESAS EJECUTOR(AS)]">, en adelante la(s) Empresa(s) Ejecutora(s), con experiencia en Proyectos similares, con quien(es) nos obligamos a celebrar un contrato para la ejecución del Proyecto, en la eventualidad de adjudicarnos la Buena Pro de este proceso de selección conforme a sus Bases.</p>
+    <p>Dejamos expresamente establecido que nuestra Empresa Privada y la Empresa Ejecutora somos responsables solidarios ante la Entidad Pública, por la calidad ofrecida y los vicios ocultos que puedan surgir después de entregadas la Obra, por un período de <input type="number" style="width:60px;" value="7" min="7"> años a partir de la conformidad de recepción de las mismas, de acuerdo a lo establecido en el Convenio de Inversión.</p>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-block" style="margin-top:40px;">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal del Postor</div>
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Ejecutora</div>
+    </div>
+    <p class="nota">Nota: Las firmas de los Representantes Legales deberán ser legalizadas por Notario Público o Juez de Paz Letrado.</p>
+</section>
+
+<!-- ANEXO 4-K -->
+<section class="anexo-page" id="anexo-4k">
+    <div class="header-ref">ANEXO N° 4-K</div>
+    <div class="title-doc">DECLARACIÓN JURADA DE PROMESA FORMAL DE CONSORCIO</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_proceso sync-data"></span></strong><br>Presente.-</p>
+    <p>De nuestra consideración,</p>
+    <p>Los suscritos declaramos expresamente que hemos convenido en forma irrevocable, durante el lapso que dure el proceso de selección, para presentar una propuesta conjunta al <strong><span class="out_proceso sync-data"></span></strong>, responsabilizándonos solidariamente por todas las acciones y omisiones que provengan del citado proceso.</p>
+    <p>Asimismo, en caso de obtener la Buena Pro, nos comprometemos a formalizar el contrato de Consorcio bajo las condiciones aquí establecidas (porcentaje de obligaciones asumidas por cada integrante).</p>
+    <p>Designamos al Sr. <input type="text" style="width:40%;" placeholder="[NOMBRES Y APELLIDOS]">, identificado con <input type="text" style="width:100px;" placeholder="DNI"> N° <input type="text" style="width:100px;" placeholder="[NÚMERO]">, como representante común del Consorcio para efectos de participar en todas las etapas del proceso de selección y para suscribir el Convenio de Inversión correspondiente con la Entidad Pública <span class="out_entidad sync-data"></span>. Asimismo, fijamos nuestro domicilio legal común en <input type="text" style="width:50%;" placeholder="[DIRECCIÓN]">.</p>
+    <table class="tabla-consorcio">
+        <tr><th>N°</th><th>Consorciado</th><th>% Participación</th><th>Obligaciones</th></tr>
+        <tr><td>1</td><td><input type="text" style="width:100%;" placeholder="Nombre Consorciado 1"></td><td><input type="number" style="width:100%; text-align:center;" placeholder="%"></td><td><input type="text" style="width:100%;" placeholder="Describir obligación"></td></tr>
+        <tr><td>2</td><td><input type="text" style="width:100%;" placeholder="Nombre Consorciado 2"></td><td><input type="number" style="width:100%; text-align:center;" placeholder="%"></td><td><input type="text" style="width:100%;" placeholder="Describir obligación"></td></tr>
+        <tr style="font-weight:bold;"><td colspan="2">TOTAL:</td><td>100%</td><td></td></tr>
+    </table>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-block" style="margin-top:40px;">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal Consorciado 1</div>
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal Consorciado 2</div>
+    </div>
+    <p class="nota">Nota: Las firmas de los representantes legales en esta Declaración Jurada deberán ser legalizadas por Notario Público o Juez de Paz Letrado. En la sección Obligaciones y Firma, se incluirá la información en razón al número de empresas consorciadas que conforman el Consorcio.</p>
+</section>
+
+<!-- ANEXO 4-L -->
+<section class="anexo-page" id="anexo-4l">
+    <div class="header-ref">ANEXO N° 4-L</div>
+    <div class="title-doc">DECLARACIÓN JURADA DEL PERSONAL PROFESIONAL PROPUESTO PARA LA EJECUCIÓN DEL PROYECTO</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_proceso sync-data"></span></strong><br>Presente.-</p>
+    <p>De nuestra consideración</p>
+    <p>Mediante el presente el suscrito, Postor y/o representante legal de <span class="out_postor sync-data"></span>, declaro bajo juramento que la información del personal profesional propuesto para la ejecución del proyecto es el siguiente:</p>
+    <table class="tabla-personal">
+        <tr>
+            <th>NOMBRES Y APELLIDOS</th>
+            <th>DNI U OTRO ANÁLOGO</th>
+            <th>CARGO ESPECIALIDAD</th>
+            <th>TIEMPO DE EXPERIENCIA ACREDITADA (GENERAL Y ESPECÍFICA)</th>
+            <th>N° DE FOLIO EN LA PROPUESTA</th>
+        </tr>
+        <tr><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td></tr>
+        <tr><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td></tr>
+        <tr><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td></tr>
+        <tr><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td></tr>
+        <tr><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%;"></td><td><input type="text" style="width:100%; text-align:center;"></td></tr>
+    </table>
+    <p><span class="out_postor sync-data"></span></p>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-single">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Representante Legal de la Empresa Privada o Consorcio</div>
+    </div>
+</section>
+
+<!-- ANEXO 4-M -->
+<section class="anexo-page" id="anexo-4m">
+    <div class="header-ref">ANEXO N° 4-M</div>
+    <div class="title-doc">CARTA DE COMPROMISO DEL PERSONAL PROFESIONAL PROPUESTO</div>
+    <p style="text-align:right;"><span class="out_fecha sync-data"></span></p>
+    <p>Señores<br><strong><span class="out_comite sync-data"></span></strong><br><strong><span class="out_proceso sync-data"></span></strong><br>Presente.-</p>
+    <p>Yo, <input type="text" style="width:50%;" placeholder="[NOMBRES Y APELLIDOS COMPLETOS]"> identificado con documento de identidad N° <input type="text" style="width:100px;" placeholder="[DNI]">, domiciliado en <input type="text" style="width:40%;" placeholder="[DOMICILIO LEGAL]">, declaro bajo juramento:</p>
+    <p>Que, me comprometo a prestar mis servicios en el cargo de <input type="text" style="width:40%;" placeholder="[CARGO A DESEMPEÑAR]"> para ejecutar el proyecto "<span class="out_proyecto sync-data"></span>" con CUI N° <span class="out_cui sync-data"></span>, en caso que el Postor <span class="out_postor sync-data"></span> resulte favorecido con la buena pro y suscriba el Convenio de Inversión correspondiente.</p>
+    <p>Asimismo, manifiesto mi disposición de ejecutar las actividades que comprenden el desempeño del referido cargo, durante el período de ejecución del proyecto.</p>
+    <p><span class="out_fecha sync-data"></span></p>
+    <div class="sig-single">
+        <div class="sig-line">Nombre, firma, sello y DNI del<br>Personal Profesional</div>
+    </div>
+    <p class="nota">En el caso que el postor sea un Consorcio se debe consignar el nombre del consorcio o de uno de sus integrantes.</p>
+</section>
+
 </main>
 
 <script src="js/app.js"></script>

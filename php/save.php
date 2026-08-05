@@ -11,7 +11,6 @@ if (!$data) {
 try {
     $pdo->beginTransaction();
 
-    // Insertar propuesta principal
     $stmt = $pdo->prepare("
         INSERT INTO propuestas (
             nomenclatura_proceso, codigo_cui, nombre_proyecto, comite_seleccion,
@@ -37,36 +36,8 @@ try {
     ]);
 
     $propuestaId = $pdo->lastInsertId();
-
-    // Insertar personal profesional
-    if (!empty($data['personal'])) {
-        $stmtPersonal = $pdo->prepare("
-            INSERT INTO personal_profesional 
-            (propuesta_id, nombres_apellidos, dni, cargo_especialidad, experiencia_general, experiencia_especifica, folio_propuesta)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-        foreach ($data['personal'] as $p) {
-            $stmtPersonal->execute([
-                $propuestaId, $p['nombres'], $p['dni'], $p['cargo'],
-                $p['exp_general'], $p['exp_especifica'], $p['folio']
-            ]);
-        }
-    }
-
-    // Insertar consorciados
-    if (!empty($data['consorciados'])) {
-        $stmtCons = $pdo->prepare("
-            INSERT INTO consorciados (propuesta_id, nombre_consorciado, porcentaje_participacion, obligaciones)
-            VALUES (?, ?, ?, ?)
-        ");
-        foreach ($data['consorciados'] as $c) {
-            $stmtCons->execute([
-                $propuestaId, $c['nombre'], $c['porcentaje'], $c['obligaciones']
-            ]);
-        }
-    }
-
     $pdo->commit();
+
     echo json_encode(['success' => true, 'id' => $propuestaId, 'message' => 'Propuesta guardada exitosamente']);
 
 } catch (\PDOException $e) {

@@ -6,8 +6,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 $host = 'localhost';
 $db   = 'propuestas_unt';
-$user = 'root';      // Cambiar en producción
-$pass = '';          // Cambiar en producción
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

@@ -1,196 +1,354 @@
-// ==========================================
-// UNT - Sistema de Propuestas
-// Motor de sincronización y cálculos
-// ==========================================
+/* ==========================================
+   UNT - Sistema de Propuestas
+   Ley N° 29230 - Obras por Impuestos
+   ========================================== */
 
-const API_URL = 'php/';
-
-// Campos maestros que se sincronizan
-const fields = [
-    'proceso', 'cui', 'proyecto', 'comite', 'entidad', 
-    'direccion', 'fecha', 'postor', 'ruc', 'representante', 
-    'dni_rep', 'email'
-];
-
-// Inicializar sincronización
-fields.forEach(f => {
-    const input = document.getElementById(`m_${f}`);
-    if (!input) return;
-    
-    const sync = () => {
-        const val = input.value;
-        document.querySelectorAll(`.out_${f}`).forEach(t => {
-            t.innerText = val || '........';
-        });
-    };
-    
-    input.addEventListener('input', sync);
-    sync(); // Trigger inicial
-});
-
-// Navegación entre anexos
-function mostrarAnexo(id) {
-    document.querySelectorAll('.anexo-page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    
-    const target = document.getElementById(`anexo-${id}`);
-    if (target) target.classList.add('active');
-    
-    if (event && event.target) event.target.classList.add('active');
+:root {
+    --unt-blue: #1a5276;
+    --unt-gold: #c9a227;
+    --sidebar-w: 320px;
+    --paper-bg: #ffffff;
+    --ink: #000000;
 }
 
-// ==========================================
-// CÁLCULO ECONÓMICO (Anexo 4-E)
-// ==========================================
-function calcularEconomico() {
-    const getVal = id => parseFloat(document.getElementById(id)?.value) || 0;
-    
-    const directo = getVal('v_directo');
-    const gg = directo * 0.10;
-    const util = directo * 0.05;
-    const sub = directo + gg + util;
-    const igv = sub * 0.18;
-    const base = sub + igv;
-    
-    const extras = [
-        'v_expediente', 'v_sup_ejec', 'v_sup_exp',
-        'v_exp_mant', 'v_act_mant', 'v_man_op', 'v_act_op'
-    ].map(getVal);
-    
-    const totalExtras = extras.reduce((a, b) => a + b, 0);
-    const total = base + totalExtras;
-    
-    // Actualizar UI
-    document.getElementById('r_gg').innerText = gg.toFixed(2);
-    document.getElementById('r_util').innerText = util.toFixed(2);
-    document.getElementById('r_sub').innerText = sub.toFixed(2);
-    document.getElementById('r_igv').innerText = igv.toFixed(2);
-    document.getElementById('r_base').innerText = base.toFixed(2);
-    document.getElementById('r_total').innerText = total.toFixed(2);
-    
-    // Números a letras
-    document.getElementById('out_letras').innerText = 
-        'SON: ' + numeroALetras(total) + ' SOLES';
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e9ecef;
+    display: flex;
+    min-height: 100vh;
 }
 
-// Conversión de números a letras (simplificado)
-function numeroALetras(numero) {
-    const unidades = ['', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO', 'SEIS', 'SIETE', 'OCHO', 'NUEVE'];
-    const decenas = ['', 'DIEZ', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA', 'SESENTA', 'SETENTA', 'OCHENTA', 'NOVENTA'];
-    const centenas = ['', 'CIENTO', 'DOSCIENTOS', 'TRESCIENTOS', 'CUATROCIENTOS', 'QUINIENTOS', 'SEISCIENTOS', 'SETECIENTOS', 'OCHOCIENTOS', 'NOVECIENTOS'];
-    
-    const entero = Math.floor(numero);
-    const decimal = Math.round((numero - entero) * 100);
-    
-    if (entero === 0) return 'CERO Y ' + (decimal < 10 ? '0' : '') + decimal + '/100';
-    
-    let texto = '';
-    const millones = Math.floor(entero / 1000000);
-    const miles = Math.floor((entero % 1000000) / 1000);
-    const cientos = entero % 1000;
-    
-    if (millones > 0) texto += millones === 1 ? 'UN MILLÓN ' : millones + ' MILLONES ';
-    if (miles > 0) texto += miles === 1 ? 'MIL ' : miles + ' MIL ';
-    if (cientos > 0) {
-        if (cientos === 100) texto += 'CIEN ';
-        else {
-            texto += centenas[Math.floor(cientos / 100)] + ' ';
-            const resto = cientos % 100;
-            if (resto > 0) {
-                if (resto < 10) texto += unidades[resto];
-                else if (resto < 20) texto += ['DIEZ', 'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE'][resto - 10] || decenas[1];
-                else {
-                    texto += decenas[Math.floor(resto / 10)];
-                    if (resto % 10 > 0) texto += ' Y ' + unidades[resto % 10];
-                }
-            }
-        }
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+#master-sidebar {
+    width: var(--sidebar-w);
+    background: linear-gradient(180deg, #1a252f 0%, #2c3e50 100%);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+}
+
+.sidebar-header h2 {
+    font-size: 16px;
+    border-bottom: 2px solid var(--unt-gold);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    color: #ecf0f1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar-header .subtitle {
+    font-size: 10px;
+    color: #bdc3c7;
+    margin-bottom: 20px;
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #34495e;
+}
+
+.sidebar-section h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--unt-gold);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.m-group { margin-bottom: 10px; }
+.m-group label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: #bdc3c7;
+    font-weight: 600;
+}
+.m-group input, .m-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid #34495e;
+    background: #1a252f;
+    color: #ecf0f1;
+    font-size: 12px;
+    transition: border-color 0.3s;
+    font-family: 'Segoe UI', sans-serif;
+}
+.m-group input:focus, .m-group textarea:focus {
+    outline: none;
+    border-color: var(--unt-gold);
+}
+.m-group textarea { resize: vertical; min-height: 50px; }
+
+.nav-anexos { margin-top: 15px; }
+.nav-anexos h3 { margin-bottom: 10px; }
+.nav-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #34495e;
+    color: #bdc3c7;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 11px;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+}
+.nav-btn:hover, .nav-btn.active {
+    background: var(--unt-blue);
+    color: white;
+    border-color: var(--unt-blue);
+}
+
+.action-btns {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.btn-primary { background: var(--unt-blue); color: white; }
+.btn-success { background: #27ae60; color: white; }
+.btn-warning { background: var(--unt-gold); color: #1a252f; }
+
+/* ==========================================
+   CANVAS & DOCUMENTOS
+   ========================================== */
+#canvas {
+    margin-left: var(--sidebar-w);
+    padding: 30px;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
+.anexo-page {
+    display: none;
+    background: var(--paper-bg);
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm 2.5cm;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    position: relative;
+    line-height: 1.6;
+    font-size: 12pt;
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--ink);
+}
+.anexo-page.active { display: block; }
+
+/* Formatos Institucionales */
+.header-ref {
+    text-align: right;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 25px;
+    font-size: 11pt;
+}
+
+.title-doc {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-size: 13pt;
+    line-height: 1.4;
+}
+
+.sync-data {
+    font-weight: bold;
+    color: var(--ink);
+    border-bottom: 1px dotted #666;
+    padding: 0 4px;
+}
+.sync-data:empty::before { content: "........"; color: #999; }
+
+p { margin-bottom: 12px; }
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 10pt;
+}
+table, th, td {
+    border: 1px solid var(--ink);
+    padding: 8px;
+}
+th { background: #f2f2f2; font-weight: bold; text-align: center; }
+td input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    text-align: right;
+}
+td input:focus { outline: none; background: #fffacd; }
+
+/* Firmas */
+.sig-block {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 9pt;
+}
+.sig-line {
+    border-top: 1px solid var(--ink);
+    width: 220px;
+    padding-top: 5px;
+    margin-top: 60px;
+}
+.sig-single {
+    margin-top: 100px;
+    text-align: center;
+}
+.sig-single .sig-line {
+    margin: 60px auto 5px auto;
+}
+
+/* Utilidades */
+.seccion-titulo {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
+    font-size: 11pt;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 5px;
+}
+
+.nota {
+    font-size: 9pt;
+    margin-top: 30px;
+    padding: 10px;
+    border-left: 3px solid var(--unt-blue);
+    background: #f8f9fa;
+}
+
+.monto-letras-box {
+    border: 2px solid var(--ink);
+    padding: 15px;
+    margin: 20px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    background: #fafafa;
+}
+
+.sobre-rotulo {
+    border: 2px solid #000;
+    padding: 15px;
+    margin: 20px 0;
+    background: #fafafa;
+}
+
+ol.legal-list { margin-left: 20px; margin-bottom: 15px; }
+ol.legal-list li { margin-bottom: 10px; text-align: justify; }
+
+.tabla-consorcio td, .tabla-consorcio th { text-align: center; }
+.tabla-consorcio td:first-child, .tabla-consorcio th:first-child { text-align: left; }
+
+.tabla-personal th { font-size: 9pt; }
+.tabla-personal td { font-size: 10pt; padding: 6px; }
+
+/* Dashboard */
+.dashboard-header { margin-bottom: 25px; }
+.dashboard-header h1 { font-size: 24px; color: var(--unt-blue); margin-bottom: 5px; font-family: 'Segoe UI', sans-serif; }
+.dashboard-header p { color: #666; font-family: 'Segoe UI', sans-serif; font-size: 12px; }
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.stat-card h4 {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', sans-serif;
+}
+.stat-card .value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--unt-blue);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-preview {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.dashboard-preview h3 {
+    font-size: 16px;
+    color: var(--unt-blue);
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    border-bottom: 2px solid var(--unt-gold);
+    padding-bottom: 8px;
+}
+
+.preview-table { margin: 0; font-family: 'Segoe UI', sans-serif; font-size: 11pt; }
+.preview-table td { border: none; border-bottom: 1px solid #eee; padding: 10px 8px; }
+.preview-table td:first-child { width: 30%; color: #555; }
+
+/* ==========================================
+   PRINT
+   ========================================== */
+@media print {
+    #master-sidebar, .no-print, .action-btns { display: none !important; }
+    #canvas { margin-left: 0; padding: 0; background: white; }
+    .anexo-page {
+        display: block !important;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+        page-break-after: always;
+        page-break-inside: avoid;
     }
-    
-    return texto.trim() + ' Y ' + (decimal < 10 ? '0' : '') + decimal + '/100';
-}
-
-// ==========================================
-// PERSISTENCIA EN BASE DE DATOS
-// ==========================================
-async function guardarPropuesta() {
-    const get = id => document.getElementById(`m_${id}`)?.value || '';
-    const getNum = id => parseFloat(document.getElementById(id)?.value) || 0;
-    
-    const payload = {
-        proceso: get('proceso'),
-        cui: get('cui'),
-        proyecto: get('proyecto'),
-        comite: get('comite'),
-        entidad: get('entidad'),
-        direccion: get('direccion'),
-        fecha: get('fecha'),
-        postor: get('postor'),
-        ruc: get('ruc'),
-        representante: get('representante'),
-        dni_rep: get('dni_rep'),
-        email: get('email'),
-        
-        // Económicos
-        costo_directo: getNum('v_directo'),
-        gastos_generales: parseFloat(document.getElementById('r_gg')?.innerText) || 0,
-        utilidad: parseFloat(document.getElementById('r_util')?.innerText) || 0,
-        subtotal: parseFloat(document.getElementById('r_sub')?.innerText) || 0,
-        igv: parseFloat(document.getElementById('r_igv')?.innerText) || 0,
-        presupuesto_base: parseFloat(document.getElementById('r_base')?.innerText) || 0,
-        costo_expediente: getNum('v_expediente'),
-        costo_sup_ejecucion: getNum('v_sup_ejec'),
-        costo_sup_expediente: getNum('v_sup_exp'),
-        costo_exp_mantenimiento: getNum('v_exp_mant'),
-        costo_act_mantenimiento: getNum('v_act_mant'),
-        costo_manual_operacion: getNum('v_man_op'),
-        costo_act_operacion: getNum('v_act_op'),
-        presupuesto_total: parseFloat(document.getElementById('r_total')?.innerText) || 0,
-        monto_letras: document.getElementById('out_letras')?.innerText || '',
-        
-        // Arrays vacíos por ahora (se pueden extender)
-        personal: [],
-        consorciados: []
-    };
-    
-    try {
-        const response = await fetch(API_URL + 'save.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            alert('✅ Propuesta guardada exitosamente. ID: ' + result.id);
-        } else {
-            alert('❌ Error: ' + result.message);
-        }
-    } catch (err) {
-        alert('❌ Error de conexión: ' + err.message);
+    body { background: white; }
+    .sync-data { border-bottom: none; }
+    input[type="text"], input[type="number"], textarea {
+        border: none !important;
+        background: transparent !important;
     }
+    .nav-btn { display: none; }
 }
-
-// ==========================================
-// EXPORTAR JSON LOCAL
-// ==========================================
-function exportarJSON() {
-    const data = {};
-    fields.forEach(f => {
-        data[f] = document.getElementById(`m_${f}`)?.value || '';
-    });
-    
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `propuesta_unt_${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-}
-
-// Inicializar
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarAnexo('dash');
-});
